@@ -1,41 +1,5 @@
 {
   "shows": {
-    "ALUC|6314|20261023|PLATINUM": {
-      "venue": "ALLU Cinemas: Kokapet",
-      "time": "10:40 AM",
-      "date": "20261023",
-      "screen": "LASER 4K ATMOS",
-      "cat": "PLATINUM",
-      "price": "350.00",
-      "status": "2"
-    },
-    "ALUC|6314|20261023|GOLD": {
-      "venue": "ALLU Cinemas: Kokapet",
-      "time": "10:40 AM",
-      "date": "20261023",
-      "screen": "LASER 4K ATMOS",
-      "cat": "GOLD",
-      "price": "295.00",
-      "status": "3"
-    },
-    "ALUC|6334|20261023|PLATINUM": {
-      "venue": "ALLU Cinemas: Kokapet",
-      "time": "01:40 PM",
-      "date": "20261023",
-      "screen": "LASER 4K ATMOS",
-      "cat": "PLATINUM",
-      "price": "350.00",
-      "status": "0"
-    },
-    "ALUC|6334|20261023|GOLD": {
-      "venue": "ALLU Cinemas: Kokapet",
-      "time": "01:40 PM",
-      "date": "20261023",
-      "screen": "LASER 4K ATMOS",
-      "cat": "GOLD",
-      "price": "295.00",
-      "status": "3"
-    },
     "ALUC|6311|20261023|PLATINUM": {
       "venue": "ALLU Cinemas: Kokapet",
       "time": "11:20 PM",
