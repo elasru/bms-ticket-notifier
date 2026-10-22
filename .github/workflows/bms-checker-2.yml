@@ -1,4 +1,4 @@
-name: BMS Ticket Checker
+name: BMS Ticket Checker CF
 
 on:
   schedule:
@@ -30,11 +30,12 @@ jobs:
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           RESEND_TO_EMAIL: ${{ secrets.RESEND_TO_EMAIL }}
           RESEND_FROM_EMAIL: ${{ secrets.RESEND_FROM_EMAIL }}
-          BMS_URL: ${{ vars.BMS_URL }}
-          BMS_DATES: ${{ vars.BMS_DATES }}
-          BMS_THEATRE: ${{ vars.BMS_THEATRE }}
-          BMS_TIME: ${{ vars.BMS_TIME }}
-          BMS_SCREEN: ${{ vars.BMS_SCREEN }}
+          BMS_URL: ${{ vars.BMS_URL_CF}}
+          BMS_DATES: ${{ vars.BMS_DATES_CF }}
+          BMS_THEATRE: ${{ vars.BMS_THEATRE_CF }}
+          BMS_TIME: ${{ vars.BMS_TIME_CF }}
+          BMS_SCREEN: ${{ vars.BMS_SCREEN_CF }}
+          BMS_STATE_FILE: "bms_state_CF.json"
         run: uv run main.py
 
       - name: Commit updated state
