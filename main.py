@@ -27,6 +27,7 @@ CONFIG = {
     "dates": os.getenv("BMS_DATES", ""),          # comma-separated YYYYMMDD, empty = from URL
     "theatre": os.getenv("BMS_THEATRE", ""),       # substring filter, empty = all
     "time_period": os.getenv("BMS_TIME", ""),      # e.g. "evening,night", empty = all
+    "screen_type": os.getenv("BMS_SCREEN", ""),    # e.g. "PXL,LUXE,Dolby", empty = all
 }
 
 RESEND_API_KEY = os.getenv("RESEND_API_KEY", "")
@@ -249,7 +250,8 @@ def parse_shows(data):
                         time=st.get("title", ""),
                         time_code=sa.get("showTimeCode", ""),
                         screen_attr=(st.get("screenAttr", "")
-                                     or sa.get("attributes", "")),
+                                     or sa.get("attributes", "")
+                                     or sa.get("screenFormat", "")),
                     )
                     for cat in sa.get("categories", []):
                         ca = str(cat.get("availStatus", ""))
@@ -266,7 +268,7 @@ def parse_shows(data):
 # ──────────────────────────────────────────────────────────────────────
 # FILTERING
 # ──────────────────────────────────────────────────────────────────────
-def filter_shows(shows, theatre_filter, time_periods, date_codes):
+def filter_shows(shows, theatre_filter, time_periods, date_codes, screen_filter):
     result = []
     kws = [k.strip().lower() for k in theatre_filter.split(",")
            if k.strip()] if theatre_filter else []
@@ -274,6 +276,8 @@ def filter_shows(shows, theatre_filter, time_periods, date_codes):
                if p.strip()] if time_periods else []
     dates_set = set(d.strip() for d in date_codes.split(",")
                     if d.strip()) if date_codes else set()
+    screens = [sc.strip().lower() for sc in screen_filter.split(",")
+               if sc.strip()] if screen_filter else []
 
     for s in shows:
         # Theatre filter
@@ -300,6 +304,11 @@ def filter_shows(shows, theatre_filter, time_periods, date_codes):
                         matched = True
                         break
             if not matched:
+                continue
+        # Screen type filter
+        if screens:
+            attr_lower = s.screen_attr.lower()
+            if not any(sc in attr_lower for sc in screens):
                 continue
 
         result.append(s)
@@ -332,6 +341,7 @@ def build_state(shows, dates):
                 "venue": s.venue_name,
                 "time": s.time,
                 "date": s.date_code,
+                "screen": s.screen_attr,
                 "cat": c.name,
                 "price": c.price,
                 "status": c.status,
@@ -362,8 +372,9 @@ def detect_changes(old_state, new_state):
     # New showtimes
     for key in set(new_shows) - set(old_shows):
         s = new_shows[key]
+        screen_str = f" [{s['screen']}]" if s.get('screen') else ""
         changes.append(
-            f"🆕 NEW: {s['venue']} {s['time']} [{s['date']}] "
+            f"🆕 NEW: {s['venue']} {s['time']}{screen_str} [{s['date']}] "
             f"— {s['cat']} ₹{s['price']}"
         )
 
@@ -375,7 +386,7 @@ def detect_changes(old_state, new_state):
                 new_s["status"], ("UNKNOWN", "⚪")
             )
             changes.append(
-                f"{ico} BACK: {new_s['venue']} {new_s['time']} "
+                f"{ico} BACK: {new_s['venue']} {new_s['time']}{screen_str} "
                 f"[{new_s['date']}] — {new_s['cat']} → {lbl}"
             )
 
@@ -492,7 +503,7 @@ def send_email(subject, changes, shows, movie_info):
                 f"{c.name} Rs.{c.price} ({_cat_status_label(c.status)})"
                 for c in s.categories
             )
-            fmt = f" [{s.screen_attr}]" if s.screen_attr else ""
+            fmt = f" &bull; <span style='color:#555;'>{escape(s.screen_attr)}</span>" if s.screen_attr else ""
             plain_lines.append(f"  {s.time}{fmt} - {cats}")
     plain_lines.extend(["", "This is an automated alert from BMS Ticket Notifier."])
     plain = "\n".join(plain_lines)
@@ -584,6 +595,7 @@ def main():
         CONFIG["theatre"],
         CONFIG["time_period"],
         CONFIG["dates"],
+        CONFIG["screen_type"],
     )
     print(f"  📊 {len(filtered)} showtime(s) after filters")
 
@@ -615,7 +627,7 @@ def main():
             f"{c.name}=₹{c.price}({AVAIL_STATUS_MAP.get(c.status, ('?',''))[0]})"
             for c in s.categories
         )
-        fmt = f"|{s.screen_attr}" if s.screen_attr else ""
+        fmt = f" | Screen: {s.screen_attr}" if s.screen_attr else ""
         print(f"    {s.venue_name} — {s.time}{fmt} [{s.date_code}] — {cats}")
 
     print("\n  Done.")
