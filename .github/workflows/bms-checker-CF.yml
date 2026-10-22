@@ -3,7 +3,7 @@ name: BMS Ticket Checker CF
 on:
   schedule:
     # Every 10 minutes
-    - cron: '*/10 * * * *'
+    - cron: '*/13 * * * *'
   workflow_dispatch:  # Manual trigger button
 
 jobs:
