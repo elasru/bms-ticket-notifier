@@ -1,86 +1,12 @@
 {
-  "shows": {
-    "ALUC|6343|20261024|PLATINUM": {
-      "venue": "ALLU Cinemas: Kokapet",
-      "time": "11:25 PM",
-      "date": "20261024",
-      "screen": "DOLBY CINEMA",
-      "cat": "PLATINUM",
-      "price": "350.00",
-      "status": "0"
-    },
-    "ALUC|6343|20261024|DIRECTOR CHOICE": {
-      "venue": "ALLU Cinemas: Kokapet",
-      "time": "11:25 PM",
-      "date": "20261024",
-      "screen": "DOLBY CINEMA",
-      "cat": "DIRECTOR CHOICE",
-      "price": "350.00",
-      "status": "0"
-    },
-    "ALUC|6343|20261024|GOLD": {
-      "venue": "ALLU Cinemas: Kokapet",
-      "time": "11:25 PM",
-      "date": "20261024",
-      "screen": "DOLBY CINEMA",
-      "cat": "GOLD",
-      "price": "295.00",
-      "status": "2"
-    },
-    "ALUC|6343|20261024|GOLD.": {
-      "venue": "ALLU Cinemas: Kokapet",
-      "time": "11:25 PM",
-      "date": "20261024",
-      "screen": "DOLBY CINEMA",
-      "cat": "GOLD.",
-      "price": "295.00",
-      "status": "3"
-    },
-    "ALUC|6388|20261025|PLATINUM": {
-      "venue": "ALLU Cinemas: Kokapet",
-      "time": "11:25 PM",
-      "date": "20261025",
-      "screen": "DOLBY CINEMA",
-      "cat": "PLATINUM",
-      "price": "350.00",
-      "status": "0"
-    },
-    "ALUC|6388|20261025|DIRECTOR CHOICE": {
-      "venue": "ALLU Cinemas: Kokapet",
-      "time": "11:25 PM",
-      "date": "20261025",
-      "screen": "DOLBY CINEMA",
-      "cat": "DIRECTOR CHOICE",
-      "price": "350.00",
-      "status": "0"
-    },
-    "ALUC|6388|20261025|GOLD": {
-      "venue": "ALLU Cinemas: Kokapet",
-      "time": "11:25 PM",
-      "date": "20261025",
-      "screen": "DOLBY CINEMA",
-      "cat": "GOLD",
-      "price": "295.00",
-      "status": "2"
-    },
-    "ALUC|6388|20261025|GOLD.": {
-      "venue": "ALLU Cinemas: Kokapet",
-      "time": "11:25 PM",
-      "date": "20261025",
-      "screen": "DOLBY CINEMA",
-      "cat": "GOLD.",
-      "price": "295.00",
-      "status": "3"
-    }
-  },
+  "shows": {},
   "dates": {
-    "20261022": "AVAILABLE",
-    "20261023": "AVAILABLE",
-    "20261024": "AVAILABLE",
-    "20261025": "BOOKABLE",
-    "20261026": "AVAILABLE",
-    "20261027": "AVAILABLE",
-    "20261028": "AVAILABLE",
-    "20261029": "AVAILABLE"
+    "20261116": "BOOKABLE",
+    "20261117": "AVAILABLE",
+    "20261118": "AVAILABLE",
+    "20261119": "AVAILABLE",
+    "20261120": "NOT_OPEN",
+    "20261121": "NOT_OPEN",
+    "20261122": "NOT_OPEN"
   }
 }
