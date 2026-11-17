@@ -539,8 +539,21 @@ def main():
     now_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     print(f"[{now_str}] BMS Ticket Checker — CI mode")
 
+    # --- DEBUGGING CONFIG VALUES ---
+    print("--- ENVIRONMENT CONFIG CHECK ---")
+    print(f"  BMS_URL: {CONFIG['url']}")
+    print(f"  BMS_DATES: {repr(CONFIG['dates'])}")
+    print(f"  BMS_THEATRE: {repr(CONFIG['theatre'])}")
+    print(f"  BMS_SCREEN: {repr(CONFIG['screen'])}")
+    print(f"  BMS_TIME: {repr(CONFIG['time_period'])}")
+    print("--------------------------------")
+
+    
+    # ... rest of your main function
+
     # Parse config
     parsed = parse_bms_url(CONFIG["url"])
+    print(f"  Parsed URL Result: {parsed}")
     event_code = parsed["event_code"]
     region_slug = parsed["region_slug"]
     url_date = parsed.get("date_code", "")
